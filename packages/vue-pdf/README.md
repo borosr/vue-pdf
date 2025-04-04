@@ -189,3 +189,4 @@ npm run dev:docs
 ## Looking for maintainers and current status
 
 Refer to this announcement for more details: https://github.com/TaTo30/vue-pdf/discussions/128 
+
