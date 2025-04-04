@@ -135,7 +135,7 @@ export function usePDF(src: PDFSrc | Ref<PDFSrc>,
     }, 10)
   }
 
-  async function print(dpi = 150, filename = 'filename') {
+  async function print(dpi = 150, filename = 'filename', opts?: { canvasStyles?: string }) {
     if (!pdfDoc.value)
       throw new Error('Current PDFDocumentProxy have not loaded yet')
     const bytes = await pdfDoc.value?.saveDocument()
@@ -160,6 +160,7 @@ export function usePDF(src: PDFSrc | Ref<PDFSrc>,
           contentWindow!,
           (viewport.width * PRINT_UNITS) / CSS_UNITS,
           (viewport.height * PRINT_UNITS) / CSS_UNITS,
+          opts
         )
       }
 

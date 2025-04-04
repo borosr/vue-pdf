@@ -14,7 +14,7 @@ async function createIframe(): Promise<HTMLIFrameElement> {
   })
 }
 
-function addStylesToIframe(content: Window, sizeX: number, sizeY: number) {
+function addStylesToIframe(content: Window, sizeX: number, sizeY: number, opts?: { canvasStyles?: string }) {
   const style = content.document.createElement('style')
   style.textContent = `
     @page {
@@ -25,13 +25,19 @@ function addStylesToIframe(content: Window, sizeX: number, sizeY: number) {
       margin: 0;
       width: 100%;
     }
-    canvas {
+  `
+  if (opts?.canvasStyles) {
+    style.textContent += `canvas {
+    ${opts?.canvasStyles}
+    }`
+  } else {
+    style.textContent += `canvas {
       width: 100%;
       page-break-after: always;
       page-break-before: avoid;
       page-break-inside: avoid;
-    }
-  `
+    }`
+  }
   content.document.head.appendChild(style)
 }
 
